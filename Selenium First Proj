@@ -1,13 +1,16 @@
 package Pgm1;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+
 
 
 public class FirstSeleniumScript 
@@ -77,11 +80,121 @@ public class FirstSeleniumScript
 	   	{
 	   		
 	   		WebElement switchtab=driver.findElement(By.id("opentab"));
-	   		switchtab.click();
-	   	    
-	   		   	   
+	   		switchtab.click();	
+	   		Thread.sleep(4000);
 	  	   	}
+	   	String parent=driver.getWindowHandle();
+	   	driver.switchTo().window(parent);
 		
-		}
+	   	//SWITCH ALERT
+	   	WebElement text1=driver.findElement(By.id("name"));
+	    text1.sendKeys("Reshma S Nair");
+	   	text1.getText();
+	   	
+	   	WebElement switchalert1=driver.findElement(By.id("alertbtn"));
+	   	switchalert1.click();
+	   	Thread.sleep(3000);
+	   	Alert alert1=driver.switchTo().alert();
+	   	alert1.accept();
+	   	
+	   	Thread.sleep(2000);
+	   	WebElement text2=driver.findElement(By.id("name"));
+	    text2.sendKeys("Reshma S Nair");
+	   	text2.getText();
+	   	
+	   	WebElement switchalert2=driver.findElement(By.id("confirmbtn"));
+	   	switchalert2.click();
+	   	Thread.sleep(3000);
+	   	Alert alert2=driver.switchTo().alert();
+	   	alert2.accept();
+	   	
+	   	WebElement displaytext=driver.findElement(By.id("displayed-text"));
+	    displaytext.sendKeys("Reshma S Nair");
+	   	displaytext.getText();
+	   	
+	   	Thread.sleep(2000);
 
-	}
+	   	WebElement elehide=driver.findElement(By.xpath("//*[@id=\"hide-textbox\"]"));
+	   	//eleselected.isDisplayed();
+	   	elehide.click();
+	   	
+
+	   	Thread.sleep(2000);
+		WebElement eleshow=driver.findElement(By.xpath("//*[@id=\"show-textbox\"]"));
+	   	//elehidden.isDisplayed();
+	   	eleshow.click();
+	   	
+		
+	   	
+	  //*[@id="product"]/tbody/tr[2]/td[1]
+	  //*[@id="product"]/tbody/tr[3]/td[1]
+	  //*[@id="product"]/tbody/tr[4]/td[1]
+	  //*[@id="product"]/tbody/tr[5]/td[1]
+	  //*[@id="product"]/tbody/tr[6]/td[1]
+	  //*[@id="product"]/tbody/tr[7]/td[1]
+	  //*[@id="product"]/tbody/tr[8]/td[1]
+	  //*[@id="product"]/tbody/tr[9]/td[1]
+	  //*[@id="product"]/tbody/tr[10]/td[1]
+	  //*[@id="product"]/tbody/tr[11]/td[1]
+	   		   
+	   		String BeforeXpath="//*[@id=\"product\"]/tbody/tr[";
+	   		String AfterXpath="]/td[1]";
+	   		
+	   		for(int i=2; i<=11;i++)
+	   		{
+	   			String actualXpath = BeforeXpath+i+AfterXpath;
+	  			WebElement element=driver.findElement(By.xpath(actualXpath));
+		  		System.out.println(element.getText());
+	   	}
+	   	
+	   	//*[@id="product"]/tbody/tr[2]/td[2]
+	   		String BeforeXpath2="//*[@id=\"product\"]/tbody/tr[";
+	   		String AfterXpath2="]/td[2]";
+	   		
+	   		for(int i=2; i<=11;i++)
+	   		{
+	   			String actualXpath2 = BeforeXpath2+i+AfterXpath2;
+	  			WebElement element=driver.findElement(By.xpath(actualXpath2));
+		  		System.out.println(element.getText());
+	   	}
+	   		String BeforeXpath3="//*[@id=\"product\"]/tbody/tr[";
+	   		String AfterXpath3="]/td[3]";
+	   		
+	   		for(int i=2; i<=11;i++)
+	   		{
+	   			String actualXpath3 = BeforeXpath3+i+AfterXpath3;
+	  			WebElement element=driver.findElement(By.xpath(actualXpath3));
+		  		System.out.println(element.getText());
+		  		
+	   	}
+	   		Thread.sleep(2000);
+	   	//MOUSEOVER
+	   		System.out.println("Mouse Hover Testing");
+			Thread.sleep(2000);
+			int j=0;
+			while(j<=1)
+			{
+			WebElement ms=driver.findElement(By.id("mousehover"));
+			Actions action=new Actions(driver);
+			action.moveToElement(ms).perform();
+			Thread.sleep(2000);
+			if(j==0)
+			{
+				WebElement Top=driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[1]"));
+				Thread.sleep(2000);
+				Top.click();
+				System.out.println("Top is Enabled?"+Top.isEnabled());
+			}
+			else
+			{
+				WebElement Reload=driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[2]"));
+				Thread.sleep(2000);
+				Reload.click();
+			}
+			j++;
+			Thread.sleep(2000);
+			}
+			//iFrame
+			WebElement iframe=driver.findElement(By.id("courses-iframe"));
+			iframe.click();
+	}}
